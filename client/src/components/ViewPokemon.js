@@ -7,11 +7,15 @@ const ViewPokemon = ({
   catchPokemon,
   releasePokemon,
   canCatch,
+  flag,
 }) => {
   let types = data.types?.map((type) => type);
-
+  function handleClick(data) {
+    console.log(data.isCaught);
+    return data.isCaught ? `Release` : `Catch`;
+  }
   return (
-    <div>
+    <div onLoadedData={handleClick}>
       <ul>
         <li className="name" key={data.name}>
           Name: {data.name}
@@ -39,14 +43,14 @@ const ViewPokemon = ({
         onMouseOut={(e) => (e.currentTarget.src = data.sprites?.front)}
       />
       <button
+        className={flag ? "showButton" : "hideButton"}
         onClick={async () => {
           (await canCatch(data))
             ? await releasePokemon(data)
             : await catchPokemon(data);
         }}
       >
-        {" "}
-        {data.isCaught ? `Release` : `Catch`}
+        {handleClick(data)}
       </button>
     </div>
   );

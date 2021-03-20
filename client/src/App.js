@@ -12,6 +12,7 @@ function App() {
   const [pokemonData, setPokemon] = useState({});
   const [typeData, setType] = useState([]);
   const [collection, setCollection] = useState([]);
+  const [catchFlag, setCatchFlag] = useState(false);
 
   function getCollection() {
     axios.get(`/api/collection`).then((res) => {
@@ -25,6 +26,7 @@ function App() {
   };
   const getPokemon = async (pokemonName) => {
     try {
+      setCatchFlag(true);
       const { data } = await axios.get(`/api/pokemon/${pokemonName}`);
       console.log("***********", collection);
       collection?.forEach((pokemonInfo) => {
@@ -79,6 +81,7 @@ function App() {
   const releasePokemon = async (pokemon) => {
     try {
       pokemon.isCaught = false;
+      console.log(pokemon.isCaught);
       const { data } = await axios.delete(
         `/api/collection/release/${pokemon.name}`
       );
@@ -99,12 +102,15 @@ function App() {
         catchPokemon={catchPokemon}
         releasePokemon={releasePokemon}
         getCollection={getCollection}
+        flag={catchFlag}
       />
       <ViewType type={typeData} search={getPokemon} />
       <Collection
+        releasePokemon={releasePokemon}
         collection={collection}
         search={getPokemon}
         getCollection={getCollection}
+        getPokemon={getPokemon}
       />
     </div>
   );
