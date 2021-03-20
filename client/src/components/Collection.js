@@ -17,19 +17,6 @@ export default function Collection({
   }
   return (
     <>
-      {/* <h1> Collection:</h1>
-      {collection.map((itemCollection, i) => (
-        <CollectionItem
-        key={`collectionItem-${i}`}
-        pokemonName={itemCollection}
-        search={search}
-        />
-        ))}
-        <button className="get-collection-btn" onClick={getCollection}>
-        Get collection
-      </button> */}
-      {/* */}
-
       <button
         className="get-collection-btn"
         onClick={

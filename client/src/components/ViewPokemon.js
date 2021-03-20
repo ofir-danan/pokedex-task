@@ -11,7 +11,6 @@ const ViewPokemon = ({
 }) => {
   let types = data.types?.map((type) => type);
   function handleClick(data) {
-    console.log(data.isCaught);
     return data.isCaught ? `Release` : `Catch`;
   }
   return (

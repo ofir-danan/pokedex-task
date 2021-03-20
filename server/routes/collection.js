@@ -40,17 +40,5 @@ collection.delete("/release/:id", async (req, res) => {
     res.status(500).send(`Error:`, e);
   }
 });
-// collection.delete("/release/:id", async (req, res) => {
-//   const toRemove = pokemonCollection.findIndex(
-//     (pokemon) => pokemon.id === parseInt(req.params.id)
-//   );
-
-//   if (toRemove === -1)
-//     return res.status(404).json({ message: "No such pokemon in favorites!" });
-
-//   pokemonCollection.splice(toRemove, 1);
-
-//   res.send(pokemonCollection);
-// });
 
 module.exports = collection;

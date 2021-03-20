@@ -16,7 +16,6 @@ function App() {
 
   function getCollection() {
     axios.get(`/api/collection`).then((res) => {
-      // res.data.forEach((pokemon) => (pokemon.isCaught = true));
       setCollection(res.data);
     });
   }
@@ -28,7 +27,6 @@ function App() {
     try {
       setCatchFlag(true);
       const { data } = await axios.get(`/api/pokemon/${pokemonName}`);
-      console.log("***********", collection);
       collection?.forEach((pokemonInfo) => {
         if (pokemonInfo.name === data.name) {
           data.isCaught = true;
@@ -80,7 +78,6 @@ function App() {
   const releasePokemon = async (pokemon) => {
     try {
       pokemon.isCaught = false;
-      console.log(pokemon.isCaught);
       const { data } = await axios.delete(
         `/api/collection/release/${pokemon.name}`
       );
