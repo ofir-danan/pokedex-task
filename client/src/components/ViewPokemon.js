@@ -15,7 +15,10 @@ const ViewPokemon = ({
     return data.isCaught ? `Release` : `Catch`;
   }
   return (
-    <div onLoadedData={handleClick}>
+    <div
+      onLoadedData={handleClick}
+      className={flag ? "showButton" : "hideButton"}
+    >
       <ul>
         <li className="name" key={data.name}>
           Name: {data.name}
@@ -43,7 +46,6 @@ const ViewPokemon = ({
         onMouseOut={(e) => (e.currentTarget.src = data.sprites?.front)}
       />
       <button
-        className={flag ? "showButton" : "hideButton"}
         onClick={async () => {
           (await canCatch(data))
             ? await releasePokemon(data)

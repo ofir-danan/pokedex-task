@@ -16,7 +16,7 @@ function App() {
 
   function getCollection() {
     axios.get(`/api/collection`).then((res) => {
-      res.data.forEach((pokemon) => (pokemon.isCaught = true));
+      // res.data.forEach((pokemon) => (pokemon.isCaught = true));
       setCollection(res.data);
     });
   }
@@ -36,7 +36,6 @@ function App() {
         }
       });
       setPokemon(data);
-      // console.log(data);
     } catch (error) {
       console.log("Error: ", error.massage);
     }
@@ -87,10 +86,12 @@ function App() {
       );
       console.log("pokemon was released");
       setCollection(data);
+      setPokemon(pokemon);
     } catch (error) {
       console.log("Error: ", error);
     }
   };
+  console.log(pokemonData);
   return (
     <div className="App">
       <h1 className="header">PokeDex</h1>
