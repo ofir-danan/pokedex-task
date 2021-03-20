@@ -4,6 +4,7 @@ import Search from "./components/Search";
 import ViewPokemon from "./components/ViewPokemon";
 import ViewType from "./components/ViewType";
 import Collection from "./components/Collection";
+import POKEDEX from "./styles/imgs/POKEDEX.png";
 
 import axios from "axios";
 
@@ -88,28 +89,29 @@ function App() {
       console.log("Error: ", error);
     }
   };
-  console.log(pokemonData);
+
   return (
     <div className="App">
-      <h1 className="header">PokeDex</h1>
+      <img src={POKEDEX} className="logo" />
       <Search value={search} onChange={onSearchChange} search={getPokemon} />
-      <ViewPokemon
-        data={pokemonData}
-        canCatch={checkIfPokemonIsCaught}
-        findType={getType}
-        catchPokemon={catchPokemon}
-        releasePokemon={releasePokemon}
-        getCollection={getCollection}
-        flag={catchFlag}
-      />
-      <ViewType type={typeData} search={getPokemon} />
-      <Collection
-        releasePokemon={releasePokemon}
-        collection={collection}
-        search={getPokemon}
-        getCollection={getCollection}
-        getPokemon={getPokemon}
-      />
+      <div className="lists">
+        <Collection
+          releasePokemon={releasePokemon}
+          collection={collection}
+          search={getPokemon}
+          getCollection={getCollection}
+        />
+        <ViewPokemon
+          data={pokemonData}
+          canCatch={checkIfPokemonIsCaught}
+          findType={getType}
+          catchPokemon={catchPokemon}
+          releasePokemon={releasePokemon}
+          getCollection={getCollection}
+          flag={catchFlag}
+        />
+        <ViewType type={typeData} search={getPokemon} />
+      </div>
     </div>
   );
 }

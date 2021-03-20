@@ -3,7 +3,7 @@ import "../styles/ViewType.css";
 
 const ViewType = ({ type, search }) => {
   return (
-    <ul>
+    <ul className="type-list">
       {type.pokemons?.map((type, i) => (
         <li onClick={() => search(type.name)} key={i}>
           {type.name}

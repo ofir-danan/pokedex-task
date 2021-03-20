@@ -30,7 +30,11 @@ export default function Collection({
         Get collection
       </button>
 
-      <div id="myModal" className={modalFlag ? "showModal" : "hideModal"}>
+      <div
+        id="myModal"
+        className={modalFlag ? "showModal" : "hideModal"}
+        className="collection"
+      >
         <div className="modal-content">
           <span
             className="close"
