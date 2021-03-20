@@ -1,6 +1,5 @@
 import React from "react";
 import { useState } from "react";
-import "../styles/Collection.css";
 import CollectionItem from "./CollectionItem";
 
 export default function Collection({

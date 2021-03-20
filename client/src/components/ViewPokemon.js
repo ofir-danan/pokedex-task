@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import "../styles/ViewPokemon.css";
 
 const ViewPokemon = ({
   data,
