@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import "../styles/ViewPokemon.css";
 
 const ViewPokemon = ({
   data,
@@ -7,11 +6,17 @@ const ViewPokemon = ({
   catchPokemon,
   releasePokemon,
   canCatch,
+  flag,
 }) => {
   let types = data.types?.map((type) => type);
-
+  function handleClick(data) {
+    return data.isCaught ? `Release` : `Catch`;
+  }
   return (
-    <div>
+    <div
+      onLoadedData={handleClick}
+      className={flag ? "showButton" : "hideButton"}
+    >
       <ul>
         <li className="name" key={data.name}>
           Name: {data.name}
@@ -45,8 +50,7 @@ const ViewPokemon = ({
             : await catchPokemon(data);
         }}
       >
-        {" "}
-        {data.isCaught ? `Release` : `Catch`}
+        {handleClick(data)}
       </button>
     </div>
   );

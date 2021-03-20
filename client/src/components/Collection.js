@@ -1,22 +1,59 @@
 import React from "react";
-import "../styles/Collection.css";
+import { useState } from "react";
 import CollectionItem from "./CollectionItem";
 
-export default function Collection({ collection, getCollection, search }) {
-  console.log(collection);
+export default function Collection({
+  collection,
+  getCollection,
+  search,
+  releasePokemon,
+  getPokemon,
+}) {
+  const [modalFlag, setModalFlag] = useState(false);
+
+  function changeModalDisplay() {
+    modalFlag ? setModalFlag(false) : setModalFlag(true);
+  }
   return (
     <>
-      <h1> Collection:</h1>
-      {collection.map((itemCollection, i) => (
-        <CollectionItem
-          key={`collectionItem-${i}`}
-          pokemonName={itemCollection}
-          search={search}
-        />
-      ))}
-      <button className="get-collection-btn" onClick={getCollection}>
+      <button
+        className="get-collection-btn"
+        onClick={
+          (getCollection,
+          () => {
+            changeModalDisplay();
+          })
+        }
+        id="myBtn"
+      >
         Get collection
       </button>
+
+      <div
+        id="myModal"
+        className={modalFlag ? "showModal" : "hideModal"}
+        className="collection"
+      >
+        <div className="modal-content">
+          <span
+            className="close"
+            onClick={() => {
+              changeModalDisplay();
+            }}
+          >
+            &times;
+          </span>
+          <h1> Collection:</h1>
+          {collection.map((itemCollection, i) => (
+            <CollectionItem
+              key={`collectionItem-${i}`}
+              pokemonName={itemCollection}
+              search={search}
+              releasePokemon={releasePokemon}
+            />
+          ))}
+        </div>
+      </div>
     </>
   );
 }

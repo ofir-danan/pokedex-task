@@ -4,6 +4,7 @@ import Search from "./components/Search";
 import ViewPokemon from "./components/ViewPokemon";
 import ViewType from "./components/ViewType";
 import Collection from "./components/Collection";
+import POKEDEX from "./styles/imgs/POKEDEX.png";
 
 import axios from "axios";
 
@@ -12,10 +13,10 @@ function App() {
   const [pokemonData, setPokemon] = useState({});
   const [typeData, setType] = useState([]);
   const [collection, setCollection] = useState([]);
+  const [catchFlag, setCatchFlag] = useState(false);
 
   function getCollection() {
     axios.get(`/api/collection`).then((res) => {
-      res.data.forEach((pokemon) => (pokemon.isCaught = true));
       setCollection(res.data);
     });
   }
@@ -25,8 +26,8 @@ function App() {
   };
   const getPokemon = async (pokemonName) => {
     try {
+      setCatchFlag(true);
       const { data } = await axios.get(`/api/pokemon/${pokemonName}`);
-      console.log("***********", collection);
       collection?.forEach((pokemonInfo) => {
         if (pokemonInfo.name === data.name) {
           data.isCaught = true;
@@ -34,7 +35,6 @@ function App() {
         }
       });
       setPokemon(data);
-      // console.log(data);
     } catch (error) {
       console.log("Error: ", error.massage);
     }
@@ -84,28 +84,34 @@ function App() {
       );
       console.log("pokemon was released");
       setCollection(data);
+      setPokemon(pokemon);
     } catch (error) {
       console.log("Error: ", error);
     }
   };
+
   return (
     <div className="App">
-      <h1 className="header">PokeDex</h1>
+      <img src={POKEDEX} className="logo" />
       <Search value={search} onChange={onSearchChange} search={getPokemon} />
-      <ViewPokemon
-        data={pokemonData}
-        canCatch={checkIfPokemonIsCaught}
-        findType={getType}
-        catchPokemon={catchPokemon}
-        releasePokemon={releasePokemon}
-        getCollection={getCollection}
-      />
-      <ViewType type={typeData} search={getPokemon} />
-      <Collection
-        collection={collection}
-        search={getPokemon}
-        getCollection={getCollection}
-      />
+      <div className="lists">
+        <Collection
+          releasePokemon={releasePokemon}
+          collection={collection}
+          search={getPokemon}
+          getCollection={getCollection}
+        />
+        <ViewPokemon
+          data={pokemonData}
+          canCatch={checkIfPokemonIsCaught}
+          findType={getType}
+          catchPokemon={catchPokemon}
+          releasePokemon={releasePokemon}
+          getCollection={getCollection}
+          flag={catchFlag}
+        />
+        <ViewType type={typeData} search={getPokemon} />
+      </div>
     </div>
   );
 }
