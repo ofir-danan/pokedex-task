@@ -7,43 +7,41 @@ export default function Collection({
   getCollection,
   search,
   releasePokemon,
-  getPokemon,
 }) {
   const [modalFlag, setModalFlag] = useState(false);
 
-  function changeModalDisplay() {
-    modalFlag ? setModalFlag(false) : setModalFlag(true);
-  }
+  // function changeModalDisplay() {
+  //   modalFlag ? setModalFlag(false) : setModalFlag(true);
+  // }
   return (
     <>
       <button
         className="get-collection-btn"
-        onClick={
-          (getCollection,
-          () => {
-            changeModalDisplay();
-          })
-        }
+        onClick={() => {
+          getCollection();
+          setModalFlag(!modalFlag);
+        }}
         id="myBtn"
+        style={{ height: "20%" }}
       >
         Get collection
       </button>
 
-      <div
-        id="myModal"
-        className={modalFlag ? "showModal" : "hideModal"}
-        className="collection"
-      >
+      <div id="myModal" className={modalFlag ? "showModal" : "hideModal"}>
         <div className="modal-content">
           <span
             className="close"
             onClick={() => {
-              changeModalDisplay();
+              setModalFlag(false);
             }}
           >
             &times;
           </span>
-          <h1> Collection:</h1>
+          <h1>
+            {collection.length > 0
+              ? "Collection:"
+              : "You need to Catch some pokemons!!! You are not good at all 👊"}
+          </h1>
           {collection.map((itemCollection, i) => (
             <CollectionItem
               key={`collectionItem-${i}`}
