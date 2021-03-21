@@ -89,7 +89,6 @@ function App() {
       console.log("Error: ", error);
     }
   };
-
   return (
     <div className="App">
       <img src={POKEDEX} className="logo" />
@@ -110,7 +109,9 @@ function App() {
           getCollection={getCollection}
           flag={catchFlag}
         />
-        <ViewType type={typeData} search={getPokemon} />
+        {typeData.pokemons?.length > 0 && (
+          <ViewType type={typeData} search={getPokemon} />
+        )}
       </div>
     </div>
   );

@@ -7,7 +7,7 @@
   /* height: 100vp; */
   background-position: center;
   background-repeat: no-repeat;
-  background-size: 75%;
+  background-size: cover;
 }
 .logo {
   margin-top: 8vh;
@@ -43,7 +43,7 @@ input {
   flex-direction: column;
   overflow-y: scroll;
   height: 50vh;
-  background-color: rgba(214, 214, 214, 0.473);
+  background-color: rgba(238, 238, 238, 0.473);
 }
 
 .type-list::-webkit-scrollbar {
@@ -93,6 +93,7 @@ input {
 
 .showButton {
   display: inline-block;
+  background-color: rgba(238, 238, 238, 0.473);
 }
 .hideButton {
   display: none;
