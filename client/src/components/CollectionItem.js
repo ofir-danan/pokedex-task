@@ -6,7 +6,7 @@ export default function CollectionItem({
   releasePokemon,
 }) {
   return (
-    <>
+    <div className="card-div">
       <div onClick={() => search(pokemonName.name)}>
         {pokemonName.name}
         <img
@@ -22,6 +22,6 @@ export default function CollectionItem({
       >
         Release
       </button>
-    </>
+    </div>
   );
 }

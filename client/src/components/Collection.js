@@ -16,7 +16,7 @@ export default function Collection({
   return (
     <>
       <button
-        className="get-collection-btn"
+        className="get-collection-btn search-btn"
         onClick={() => {
           getCollection();
           setModalFlag(!modalFlag);

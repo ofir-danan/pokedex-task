@@ -3,7 +3,6 @@ import "./App.css";
 import Search from "./components/Search";
 import ViewPokemon from "./components/ViewPokemon";
 import ViewType from "./components/ViewType";
-import Collection from "./components/Collection";
 import POKEDEX from "./styles/imgs/POKEDEX.png";
 
 import axios from "axios";
@@ -92,14 +91,15 @@ function App() {
   return (
     <div className="App">
       <img src={POKEDEX} className="logo" />
-      <Search value={search} onChange={onSearchChange} search={getPokemon} />
+      <Search
+        value={search}
+        onChange={onSearchChange}
+        search={getPokemon}
+        releasePokemon={releasePokemon}
+        collection={collection}
+        getCollection={getCollection}
+      />
       <div className="lists">
-        <Collection
-          releasePokemon={releasePokemon}
-          collection={collection}
-          search={getPokemon}
-          getCollection={getCollection}
-        />
         <ViewPokemon
           data={pokemonData}
           canCatch={checkIfPokemonIsCaught}
